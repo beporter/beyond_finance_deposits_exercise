@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_08_183442) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_08_222924) do
   create_table "deposits", force: :cascade do |t|
     t.integer "tradeline_id", null: false
     t.integer "amount_cents", null: false
@@ -22,9 +22,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_08_183442) do
 
   create_table "tradelines", force: :cascade do |t|
     t.string "name", null: false
-    t.decimal "amount", precision: 8, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "amount_cents"
   end
 
   add_foreign_key "deposits", "tradelines"

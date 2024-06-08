@@ -1,3 +1,13 @@
+class Deposit < ApplicationRecord
+  # Associations
+  belongs_to :tradeline
+
+  # Validations
+  validates :amount_cents, numericality: { only_integer: true, greater_than: 0 }
+  validates_date :deposit_date
+
+end
+
 # == Schema Information
 #
 # Table name: deposits
@@ -17,12 +27,3 @@
 #
 #  tradeline_id  (tradeline_id => tradelines.id)
 #
-class Deposit < ApplicationRecord
-  # Associations
-  belongs_to :tradeline
-
-  # Validations
-  validates :amount_cents, numericality: { only_integer: true, greater_than: 0 }
-  validates_date :deposit_date
-
-end
