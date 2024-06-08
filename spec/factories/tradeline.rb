@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :tradeline do
     name { 'Some Credit Card' }
-    amount_cents { 322354 }
+    amount_cents { 3223_54 }
 
     factory :tradeline_with_deposits do
       transient do
