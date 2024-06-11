@@ -21,16 +21,27 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
+# Simplify Model validations on date/time fields.
+gem 'validates_timeliness', '~> 7.0.0.beta2'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
   gem "rspec-rails"
   gem "pry"
   gem "factory_bot_rails"
+  gem 'annotate'
 end
 
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+ gem 'guard'
+ gem 'guard-rspec', require: false
 end
 
+group :test do
+  gem 'shoulda-matchers', '~> 6.0'
+  gem 'simplecov', require: false
+end

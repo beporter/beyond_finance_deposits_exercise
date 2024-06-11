@@ -1,17 +1,9 @@
 class TradelinesController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, with: :not_found
-
   def index
-    render json: Tradeline.all
+    render json: Tradeline.includes(:deposits).all, methods: :balance_cents, include: :deposits
   end
 
   def show
-    render json: Tradeline.find(params[:id])
-  end
-
-  private
-
-  def not_found
-    render json: 'not_found', status: :not_found
+    render json: Tradeline.includes(:deposits).find(params[:id]), methods: :balance_cents, include: :deposits
   end
 end

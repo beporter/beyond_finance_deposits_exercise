@@ -10,7 +10,7 @@ RSpec.describe TradelinesController, type: :controller do
   end
 
   describe '#show' do
-    let(:tradeline) { FactoryBot.create :tradeline }
+    let(:tradeline) { create(:tradeline) }
 
     it 'responds with a 200' do
       get :show, params: { id: tradeline.id }
