@@ -4,7 +4,18 @@ class Deposit < ApplicationRecord
 
   # Validations
   validates :amount_cents, numericality: { only_integer: true, greater_than: 0 }
+  validate :validate_tradeline_balance
   validates_date :deposit_date
+
+  private
+
+  def validate_tradeline_balance
+    return unless tradeline.present?
+
+    if amount_cents > tradeline.balance_cents
+      errors.add :amount_cents, 'Deposit amount exceeds Tradeline balance'
+    end
+  end
 
 end
 
